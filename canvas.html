@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Drawing Area</title>
+<!-- You can add your style here rather than in an external style sheet. -->
+<style>
+	canvas {
+	    border:5px solid #d3d3d3;
+	    background-color: #f1f1f1;
+	    display: block;
+	}
+</style>
+
+</head>
+<body>
+	<canvas id="mycanvas" width="80%" height="160vh"> 
+  An alternative text describing what your canvas displays. 
+</canvas>
+<input type = "color" id = "picker"/>
+
+<script>
+var canvas = document.querySelector("#mycanvas");
+var ctx = canvas.getContext("2d");
+var pen="down";
+var color = "red";
+var color_picker = document.querySelector("#picker");
+
+canvas.width=0.8*window.innerWidth;
+canvas.height=0.8*window.innerHeight;
+canvas.addEventListener(
+    "mousemove",function (e){
+       console.log(e);
+		var rect = canvas.getBoundingClientRect();
+		var x= e.clientX-rect.left;
+		
+		var y= e.clientY-rect.top;
+		// console.log(x)
+		// console.log(y)
+		if (pen == "down"){
+		ctx.fillStyle=color;
+		// ctx.fillStyle = color;
+		ctx.beginPath();
+		ctx.arc(x,y,10,0,2*Math.PI);
+		ctx.fill();
+		}
+    }
+)
+document.addEventListener(
+	"keydown",function (e){
+		console.log(e);
+		if (e.key == "ArrowUp"){
+			pen = "up"
+		}
+		if (e.key == "ArrowDown"){
+			pen = "down"
+		}
+		if ((e.key == "b")||(e.key=="B")){
+			
+			ctx.fillStyle = "#00F"
+			color = "#00F"
+		}
+		if ((e.key == "r")||(e.key=="R")){
+			ctx.fillStyle = "#F00"
+			color = "#F00"
+		}
+		if ((e.key == "g")||(e.key=="G")){
+			ctx.fillStyle = "#0F0"
+			color = "#0F0"
+		}
+		if ((e.key == "y")||(e.key=="Y")){
+			ctx.fillStyle = "yellow"
+			color = "yellow"
+		}
+		if (e.key == " "){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		}
+		
+	}
+	
+)
+color_picker.oninput=function pickColor(){
+	color=color_picker.value;
+}
+
+</script>
+
+</body>
+</html>
+
