@@ -32,8 +32,8 @@ canvas.addEventListener(
     "mousemove",function (e){
        console.log(e);
 		// var rect = canvas.getBoundingClientRect();
-		var x= e.clientX-2.5*canvas.clientLeft;
-		var y= e.clientY-2.5*canvas.clientTop;
+		var x= e.clientX-canvas.offsetLeft-5;
+		var y= e.clientY-canvas.offsetTop-5;
 		// console.log(x)
 		// console.log(y)
 		if (pen == "down"){
