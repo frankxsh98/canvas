@@ -31,10 +31,9 @@ canvas.height=0.8*window.innerHeight;
 canvas.addEventListener(
     "mousemove",function (e){
        console.log(e);
-		var rect = canvas.getBoundingClientRect();
-		var x= e.clientX-rect.left;
-		
-		var y= e.clientY-rect.top;
+		// var rect = canvas.getBoundingClientRect();
+		var x= e.clientX-2.5*canvas.clientLeft;
+		var y= e.clientY-2.5*canvas.clientTop;
 		// console.log(x)
 		// console.log(y)
 		if (pen == "down"){
