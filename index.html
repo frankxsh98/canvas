@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<canvas id="mycanvas" width="80%" height="160vh"> 
+	<canvas id="mycanvas" width="80%" height="80%"> 
   An alternative text describing what your canvas displays. 
 </canvas>
 <input type = "color" id = "picker"/>
@@ -30,15 +30,14 @@ canvas.width=0.8*window.innerWidth;
 canvas.height=0.8*window.innerHeight;
 canvas.addEventListener(
     "mousemove",function (e){
-       console.log(e);
+    //    console.log(e);
 		// var rect = canvas.getBoundingClientRect();
-		var x= e.clientX-canvas.offsetLeft-5;
-		var y= e.clientY-canvas.offsetTop-5;
-		// console.log(x)
-		// console.log(y)
+		// var x= e.clientX-canvas.offsetLeft-5;
+		// var y= e.clientY-canvas.offsetTop-5;
+		var x= e.offsetX;
+		var y= e.offsetY;
 		if (pen == "down"){
 		ctx.fillStyle=color;
-		// ctx.fillStyle = color;
 		ctx.beginPath();
 		ctx.arc(x,y,10,0,2*Math.PI);
 		ctx.fill();
@@ -58,6 +57,7 @@ document.addEventListener(
 			
 			ctx.fillStyle = "#00F"
 			color = "#00F"
+			
 		}
 		if ((e.key == "r")||(e.key=="R")){
 			ctx.fillStyle = "#F00"
@@ -73,14 +73,23 @@ document.addEventListener(
 		}
 		if (e.key == " "){
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 		}
 		
 	}
 	
 )
-color_picker.oninput=function pickColor(){
-	color=color_picker.value;
-}
+// color_picker.oninput=function pickColor(){
+// 	color=color_picker.value;
+// }
+
+color_picker.addEventListener(
+	"input",function(e){
+		console.log(e.target.value)
+		color=e.target.value;
+
+	}
+)
 
 </script>
 
